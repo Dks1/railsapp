@@ -2,24 +2,24 @@
 <html>
 	
 	<head>
-	  <title>Simple CMS | <%= @page_title || "Admin" %></title>
+	  <title>Simple CMS<%=" | #{@page_title}" if @page_title  %></title>
 	  <%= stylesheet_link_tag('application', :media => 'all') %>
 	</head>
 	
 	<body>
 		<div id="header">
-			<h1>Simple CMS Admin </h1>
+			<h1>Simple CMS</h1>
 		</div>
 		<div id="main">
-			<% if !flash[:notice].blank? %>
-			<div class="notice">
-				<%= flash[:notice] %>
+			<div id="navigation">
+				<%= render(:partial => 'layouts/navigation', :locals => {:subjects => @subjects})%>
 			</div>
-			<% end %>
 			<div id="content">
 				<!--Before Yield -->
 				<%= yield %>
 				<!--After Yield -->
+			</div>
+			<div class="clear">
 			</div>
 		</div>
 		<div id="footer">
